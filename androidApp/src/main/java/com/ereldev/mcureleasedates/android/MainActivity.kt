@@ -4,10 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ereldev.mcureleasedates.Greeting
 import androidx.activity.compose.setContent
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.ereldev.mcureleasedates.android.common.ui.MCUReleaseDatesTheme
+import com.ereldev.mcureleasedates.android.list.ListScreen
 
 fun greet(): String {
     return Greeting().greeting()
@@ -20,22 +20,15 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             MCUReleaseDatesTheme {
-                GreatText(greet())
+                ListScreen()
             }
         }
     }
     
 }
 
-@Composable
-fun GreatText(text: String) {
-    Text(text)
-}
-
 @Preview
 @Composable
-fun GreatTextPreview() {
-    MCUReleaseDatesTheme {
-        GreatText(greet())
-    }
+fun PreviewMainActivity() {
+    ListScreen()
 }
