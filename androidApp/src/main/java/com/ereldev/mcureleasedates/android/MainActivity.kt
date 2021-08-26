@@ -7,7 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.ereldev.mcureleasedates.android.common.ui.MCUReleaseDatesTheme
-import com.ereldev.mcureleasedates.android.list.ListScreen
+import com.ereldev.mcureleasedates.android.list.ui.ListScreen
 
 fun greet(): String {
     return Greeting().greeting()
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     
 }
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 fun PreviewMainActivity() {
     ListScreen()

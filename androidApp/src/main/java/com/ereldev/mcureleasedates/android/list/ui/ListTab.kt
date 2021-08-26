@@ -1,4 +1,4 @@
-package com.ereldev.mcureleasedates.android.list
+package com.ereldev.mcureleasedates.android.list.ui
 
 import com.ereldev.mcureleasedates.android.R
 
