@@ -1,13 +1,15 @@
 package com.ereldev.mcureleasedates.business.show
 
-import com.ereldev.mcureleasedates.business.show.model.Show
 import com.ereldev.mcureleasedates.business.show.model.Shows
+import com.ereldev.mcureleasedates.business.show.repository.ShowRepository
 
-class GetShowsUseCase {
+class GetShowsUseCase(
+    private val showRepository: ShowRepository
+) {
 
     suspend fun execute() = Shows(
-        listOf(Show("Spiderman 3"), Show("Venom 2")),
-        listOf(Show("What If?"))
+        showRepository.getMovies(),
+        showRepository.getTVShows()
     )
 
 }
