@@ -3,6 +3,7 @@
     package="com.ereldev.mcureleasedates.android">
 
     <application
+        android:name=".MCUReleaseDatesApplication"
         android:allowBackup="false"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

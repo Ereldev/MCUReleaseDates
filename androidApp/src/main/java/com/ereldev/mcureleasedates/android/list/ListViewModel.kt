@@ -5,10 +5,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ereldev.mcureleasedates.business.show.GetShowsUseCase
 import com.ereldev.mcureleasedates.business.show.model.Show
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ListViewModel: ViewModel() {
+@HiltViewModel
+class ListViewModel @Inject constructor(
+    private val getShowsUseCase: GetShowsUseCase
+): ViewModel() {
 
     var loading = mutableStateOf(true)
         private set
@@ -17,9 +22,6 @@ class ListViewModel: ViewModel() {
         private set
     var tvShows = listOf<Show>()
         private set
-
-    // TODO use injection
-    private val getShowsUseCase = GetShowsUseCase()
 
     init {
         viewModelScope.launch {
