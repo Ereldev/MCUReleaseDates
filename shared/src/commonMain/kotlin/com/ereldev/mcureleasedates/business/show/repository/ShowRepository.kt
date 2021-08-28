@@ -14,6 +14,8 @@ class ShowRepository(
         }
 
     suspend fun getTVShows() =
-        api.getTVShows()
+        api.getTVShows().results.map {
+            Show(it.originalName ?: "")
+        }
 
 }

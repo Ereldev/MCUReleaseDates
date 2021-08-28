@@ -27,9 +27,10 @@ class ListViewModel @Inject constructor(
         viewModelScope.launch {
             delay(2000)
 
-            val shows = getShowsUseCase.execute()
-            movies = shows.movies
-            tvShows = shows.tvShows
+            getShowsUseCase.execute().let {
+                movies = it.movies
+                tvShows = it.tvShows
+            }
 
             loading.value = false
         }

@@ -1,8 +1,11 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization") version "1.5.20"
+    id("com.codingfeline.buildkonfig")
     id("com.android.library")
 }
 
@@ -56,6 +59,15 @@ kotlin {
             }
         }
         val iosTest by getting
+    }
+}
+
+buildkonfig {
+    packageName = "com.ereldev.mcureleasedates"
+
+    defaultConfigs {
+        val themoviedbApiKey: String = gradleLocalProperties(rootDir).getProperty("themoviedbApiKey")
+        buildConfigField(STRING, "themoviedbApiKey", themoviedbApiKey)
     }
 }
 

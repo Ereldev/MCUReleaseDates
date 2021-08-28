@@ -4,7 +4,13 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ShowDto(
+data class MovieDto(
     val id: Int,
-    @SerialName("original_title") val originalTitle: String?
+    @SerialName("original_title") val originalTitle: String? = null
+)
+
+@Serializable
+data class TVShowDto(
+    val id: Int,
+    @SerialName("original_name") val originalName: String? = null
 )
