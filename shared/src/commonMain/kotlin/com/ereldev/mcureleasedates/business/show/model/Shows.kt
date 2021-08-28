@@ -6,5 +6,6 @@ data class Shows(
 )
 
 data class Show(
-    val title: String
+    val title: String,
+    val overview: String
 )

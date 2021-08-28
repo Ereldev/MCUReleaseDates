@@ -12,6 +12,7 @@ class ShowApi {
 
     private val httpClient: HttpClient = HttpClientFactory.buildClient()
 
+    // TODO Handle phone language
     suspend fun getMovies(): ResponseDto<List<MovieDto>> =
         httpClient.get("$API_URL$DISCOVER_MOVIE_PATH") {
             addQueryParameters(this)

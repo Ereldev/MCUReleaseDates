@@ -2,6 +2,8 @@ package com.ereldev.mcureleasedates.android.list
 
 import com.ereldev.mcureleasedates.business.show.GetShowsUseCase
 import com.ereldev.mcureleasedates.business.show.api.ShowApi
+import com.ereldev.mcureleasedates.business.show.mapper.MovieDtoToShowMapper
+import com.ereldev.mcureleasedates.business.show.mapper.TVShowDtoToShowMapper
 import com.ereldev.mcureleasedates.business.show.repository.ShowRepository
 import dagger.Module
 import dagger.Provides
@@ -16,10 +18,20 @@ object ListViewModelModule {
     fun providesShowApi() = ShowApi()
 
     @Provides
+    fun providesMovieDtoToShowMapper() = MovieDtoToShowMapper()
+
+    @Provides
+    fun providesTVShowDtoToShowMapper() = TVShowDtoToShowMapper()
+
+    @Provides
     fun providesShowRepository(
-        showApi: ShowApi
+        showApi: ShowApi,
+        movieMapper: MovieDtoToShowMapper,
+        tvShowMapper: TVShowDtoToShowMapper
     ) = ShowRepository(
-        showApi
+        showApi,
+        movieMapper,
+        tvShowMapper
     )
 
     @Provides
