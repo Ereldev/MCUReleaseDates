@@ -21,5 +21,5 @@ fun ShowsList(shows: List<Show>, onShowClick: (Show) -> Unit) {
 @Preview(showSystemUi = true)
 @Composable
 fun PreviewMoviesScreen() {
-    ShowsList(listOf(Show("Spiderman 3"), Show("Venom 2"))) {}
+    ShowsList(listOf(Show("Spiderman 3", "overview"), Show("Venom 2", "overview"))) {}
 }

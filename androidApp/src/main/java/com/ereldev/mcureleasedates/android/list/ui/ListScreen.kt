@@ -26,8 +26,6 @@ fun ListScreen(listViewModel: ListViewModel = viewModel()) {
             Text(text = "Loading ...")
         } else {
             Column {
-                Tabs(selectedTabIndex) { selectedTabIndex = it }
-
                 when(selectedTabIndex) {
                     ListTab.Movies.ordinal -> {
                         ShowsList(listViewModel.movies) { onShowClick(it) }
@@ -36,6 +34,9 @@ fun ListScreen(listViewModel: ListViewModel = viewModel()) {
                         ShowsList(listViewModel.tvShows) { onShowClick(it) }
                     }
                 }
+
+                // TODO make it Sticky
+                Tabs(selectedTabIndex) { selectedTabIndex = it }
             }
         }
     }
