@@ -16,12 +16,14 @@ class ShowApi {
     suspend fun getMovies(): ResponseDto<List<MovieDto>> =
         httpClient.get("$API_URL$DISCOVER_MOVIE_PATH") {
             addQueryParameters(this)
+            parameter("sort_by", "release_date.asc")
             parameter("release_date.gte", "2021-08-27") //TODO set date to method params
         }
 
     suspend fun getTVShows(): ResponseDto<List<TVShowDto>> =
         httpClient.get("$API_URL$DISCOVER_TV_PATH") {
             addQueryParameters(this)
+            parameter("sort_by", "first_air_date.asc")
             parameter("air_date.gte", "2021-08-27") //TODO set date to method params
         }
 

@@ -8,5 +8,6 @@ data class Shows(
 data class Show(
     val title: String,
     val overview: String,
+    val date: String,
     val image: String? = null
 )

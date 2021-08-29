@@ -10,6 +10,7 @@ class MovieDtoToShowMapper: Mapper<MovieDto, Show>() {
     override fun from(from: MovieDto) = Show(
         from.title ?: "",
         from.overview ?: "",
+        from.releaseDate ?: "",
         from.posterPath?.let { "${ShowApi.POSTER_URL}$it" }
     )
 

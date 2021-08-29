@@ -10,6 +10,7 @@ class TVShowDtoToShowMapper: Mapper<TVShowDto, Show>() {
     override fun from(from: TVShowDto) = Show(
         from.name ?: "",
         from.overview ?: "",
+        from.firstAirDate ?: "",
         from.posterPath?.let { "${ShowApi.POSTER_URL}$it" }
     )
 
