@@ -54,6 +54,9 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling:1.0.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
 
+    // Image Loading
+    implementation("com.github.skydoves:landscapist-glide:1.3.4")
+
     // DI
     implementation("com.google.dagger:hilt-android:2.38.1")
     kapt("com.google.dagger:hilt-android-compiler:2.38.1")

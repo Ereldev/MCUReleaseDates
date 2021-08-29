@@ -17,4 +17,5 @@ data class TVShowDto(
     val id: Int,
     val name: String? = null,
     val overview: String? = null,
+    @SerialName("poster_path") val posterPath: String? = null
 )

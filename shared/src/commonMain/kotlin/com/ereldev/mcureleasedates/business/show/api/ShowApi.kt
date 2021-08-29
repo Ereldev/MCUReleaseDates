@@ -34,6 +34,8 @@ class ShowApi {
     companion object {
         private const val API_URL = "https://api.themoviedb.org/3"
 
+        const val POSTER_URL = "https://image.tmdb.org/t/p/w154"
+
         private const val DISCOVER_MOVIE_PATH = "/discover/movie"
         private const val DISCOVER_TV_PATH = "/discover/tv"
 

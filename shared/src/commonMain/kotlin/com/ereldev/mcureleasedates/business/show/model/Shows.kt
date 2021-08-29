@@ -7,5 +7,6 @@ data class Shows(
 
 data class Show(
     val title: String,
-    val overview: String
+    val overview: String,
+    val image: String? = null
 )
