@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ereldev.mcureleasedates.android.R
+import com.ereldev.mcureleasedates.android.common.ui.formatDate
 import com.ereldev.mcureleasedates.business.show.model.Show
 import com.skydoves.landscapist.glide.GlideImage
 
@@ -46,11 +47,11 @@ fun ShowListItem(show: Show, onShowClick: () -> Unit) {
             )
             Spacer(modifier = Modifier.width(8.dp))
             Column {
-                Text(text = show.title, maxLines = 1, style = TextStyle(
+                Text(text = show.date.formatDate(), maxLines = 1, style = TextStyle(
                     fontSize = 16.sp, fontWeight = FontWeight.Bold
                 ))
-                Text(text = show.title, color = Color.LightGray, fontSize = 14.sp)
-                Text(text = show.overview, maxLines = 4, fontSize = 14.sp)
+                Text(text = show.title, maxLines = 1, fontSize = 16.sp)
+                Text(text = show.overview, maxLines = 4, fontSize = 14.sp, color = Color.Gray)
             }
         }
     }
@@ -60,5 +61,5 @@ fun ShowListItem(show: Show, onShowClick: () -> Unit) {
 @Preview
 @Composable
 fun PreviewShowListItem() {
-    ShowListItem(Show("Venom 2", "Let There Be Carnage ...")) {}
+    ShowListItem(Show("Venom 2", "Let There Be Carnage ...", "2021-11-24")) {}
 }

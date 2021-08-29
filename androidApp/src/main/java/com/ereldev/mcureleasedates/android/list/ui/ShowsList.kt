@@ -27,8 +27,8 @@ fun ShowsList(shows: List<Show>, modifier: Modifier = Modifier, onShowClick: (Sh
 fun PreviewMoviesScreen() {
     ShowsList(
         listOf(
-            Show("Spiderman 3", "overview"),
-            Show("Venom 2", "overview")
+            Show("Spiderman 3", "overview", "2021-11-24"),
+            Show("Venom 2", "overview", "2021-11-24")
         )
     ) {}
 }
