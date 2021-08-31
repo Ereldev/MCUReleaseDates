@@ -57,6 +57,9 @@ dependencies {
     // Image Loading
     implementation("com.github.skydoves:landscapist-glide:1.3.4")
 
+    // Lottie
+    implementation("com.airbnb.android:lottie-compose:4.1.0")
+
     // DI
     implementation("com.google.dagger:hilt-android:2.38.1")
     kapt("com.google.dagger:hilt-android-compiler:2.38.1")

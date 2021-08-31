@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ereldev.mcureleasedates.Greeting
 import androidx.activity.compose.setContent
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.ereldev.mcureleasedates.android.common.ui.MCUReleaseDatesTheme
@@ -17,6 +18,7 @@ fun greet(): String {
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     
 }
 
+@ExperimentalMaterialApi
 @Preview(showSystemUi = true)
 @Composable
 fun PreviewMainActivity() {

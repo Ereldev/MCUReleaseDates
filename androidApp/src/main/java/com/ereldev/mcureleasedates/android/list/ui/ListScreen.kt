@@ -25,7 +25,7 @@ fun ListScreen(listViewModel: ListViewModel = viewModel()) {
 
     Scaffold {
         if (loading) {
-            Text(text = "Loading ...")
+            ListLoading()
         } else {
             Column {
                 when(selectedTabIndex) {
