@@ -21,7 +21,7 @@ import com.ereldev.mcureleasedates.android.R
 import com.ereldev.mcureleasedates.android.common.ui.formatDate
 import com.ereldev.mcureleasedates.business.show.factory.ShowFactory
 import com.ereldev.mcureleasedates.business.show.model.Show
-import com.skydoves.landscapist.glide.GlideImage
+import com.skydoves.landscapist.coil.CoilImage
 
 @ExperimentalMaterialApi
 @Composable
@@ -35,7 +35,7 @@ fun ShowListItem(show: Show, onShowClick: () -> Unit) {
         onClick = { onShowClick() }
     ) {
         Row(modifier = Modifier.padding(8.dp)) {
-            GlideImage(
+            CoilImage(
                 imageModel = show.image ?: painterResource(R.drawable.movie_placeholder),
                 placeHolder = painterResource(R.drawable.movie_placeholder),
                 error = painterResource(R.drawable.movie_placeholder),

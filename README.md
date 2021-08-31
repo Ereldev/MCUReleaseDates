@@ -11,11 +11,12 @@ Get a list of all future Marvel Cinematic Universe (MCU) movies with details &am
 ## Android
 
 [x] Better loading state
-[ ] Handle empty lists
+[x] Handle empty lists
 [ ] Handle errors with retry
 [ ] Add Show detail screen
 [ ] Add Show detail loading by using placeholders
 [ ] Fix missing preview for Screens due to view model injection
+[ ] Main Theme + Dark Theme colors
 [ ] Clear TODOs
 [ ] Add Unit Tests
 

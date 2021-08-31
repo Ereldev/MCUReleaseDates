@@ -3,6 +3,7 @@ package com.ereldev.mcureleasedates.android.list.ui
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -33,7 +34,12 @@ fun ListScreen(listViewModel: ListViewModel = viewModel()) {
                     ListTab.TVShows.ordinal -> { listViewModel.tvShows }
                     else -> null
                 }?.let {
-                    ShowsList(it, modifier = Modifier.weight(1f)) { show -> onShowClick(c, show) }
+                    ShowsList(
+                        it,
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxSize()
+                    ) { show -> onShowClick(c, show) }
                 }
 
                 Tabs(selectedTabIndex) {

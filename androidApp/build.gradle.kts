@@ -55,7 +55,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
 
     // Image Loading
-    implementation("com.github.skydoves:landscapist-glide:1.3.4")
+    implementation("com.github.skydoves:landscapist-coil:1.3.4")
 
     // Lottie
     implementation("com.airbnb.android:lottie-compose:4.1.0")

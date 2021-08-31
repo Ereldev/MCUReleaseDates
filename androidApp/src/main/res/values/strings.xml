@@ -6,4 +6,6 @@
     <string name="movies">Movies</string>
     <string name="tv_shows">TV Shows</string>
 
+    <string name="nothing_to_see_for_now">Nothing to see for now …</string>
+
 </resources>
