@@ -5,7 +5,7 @@ Get a list of all future Marvel Cinematic Universe (MCU) movies with details &am
 
 ## Shared
 
-[ ] Create factories with sample data for previews
+[x] Create factories with sample data for previews
 [ ] Add Unit Tests
 
 ## Android
@@ -15,6 +15,7 @@ Get a list of all future Marvel Cinematic Universe (MCU) movies with details &am
 [ ] Handle errors with retry
 [ ] Add Show detail screen
 [ ] Add Show detail loading by using placeholders
+[ ] Fix missing preview for Screens due to view model injection
 [ ] Clear TODOs
 [ ] Add Unit Tests
 

@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ereldev.mcureleasedates.android.R
 import com.ereldev.mcureleasedates.android.common.ui.formatDate
+import com.ereldev.mcureleasedates.business.show.factory.ShowFactory
 import com.ereldev.mcureleasedates.business.show.model.Show
 import com.skydoves.landscapist.glide.GlideImage
 
@@ -61,5 +62,5 @@ fun ShowListItem(show: Show, onShowClick: () -> Unit) {
 @Preview
 @Composable
 fun PreviewShowListItem() {
-    ShowListItem(Show("Venom 2", "Let There Be Carnage ...", "2021-11-24")) {}
+    ShowListItem(ShowFactory.fixedShows().movies.first()) {}
 }

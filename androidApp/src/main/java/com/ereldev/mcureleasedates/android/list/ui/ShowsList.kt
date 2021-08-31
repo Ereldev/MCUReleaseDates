@@ -7,6 +7,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.ereldev.mcureleasedates.business.show.factory.ShowFactory
 import com.ereldev.mcureleasedates.business.show.model.Show
 
 @ExperimentalMaterialApi
@@ -25,10 +26,5 @@ fun ShowsList(shows: List<Show>, modifier: Modifier = Modifier, onShowClick: (Sh
 @Preview(showSystemUi = true)
 @Composable
 fun PreviewMoviesScreen() {
-    ShowsList(
-        listOf(
-            Show("Spiderman 3", "overview", "2021-11-24"),
-            Show("Venom 2", "overview", "2021-11-24")
-        )
-    ) {}
+    ShowsList(ShowFactory.fixedShows().movies) {}
 }
