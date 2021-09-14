@@ -1,28 +1,30 @@
 package com.ereldev.mcureleasedates.android.list.ui
 
-import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.ereldev.mcureleasedates.android.detail.ui.DETAIL_SCREEN_NAME
 import com.ereldev.mcureleasedates.android.list.ListViewModel
 import com.ereldev.mcureleasedates.business.show.model.Show
 
+const val LIST_SCREEN_NAME = "list"
+
 @ExperimentalMaterialApi
 @Composable
-fun ListScreen(listViewModel: ListViewModel = viewModel()) {
+fun ListScreen(
+    listViewModel: ListViewModel = viewModel(),
+    navController: NavController
+) {
     var selectedTabIndex by remember { mutableStateOf(0) }
     val loading by remember { listViewModel.loading }
-    val c = LocalContext.current
 
     Scaffold {
         if (loading) {
@@ -39,7 +41,7 @@ fun ListScreen(listViewModel: ListViewModel = viewModel()) {
                         modifier = Modifier
                             .weight(1f)
                             .fillMaxSize()
-                    ) { show -> onShowClick(c, show) }
+                    ) { show -> onShowClick(navController, show) }
                 }
 
                 Tabs(selectedTabIndex) {
@@ -50,8 +52,8 @@ fun ListScreen(listViewModel: ListViewModel = viewModel()) {
     }
 }
 
-private fun onShowClick(context: Context, show: Show) {
-    Toast.makeText(context, show.title, Toast.LENGTH_LONG).show()
+private fun onShowClick(navController: NavController, show: Show) {
+    navController.navigate(DETAIL_SCREEN_NAME)
 }
 
 @Composable
@@ -71,11 +73,4 @@ fun Tabs(selectedTabIndex: Int, onTabChange: (Int) -> Unit) {
             }
         }
     }
-}
-
-@ExperimentalMaterialApi
-@Preview(showSystemUi = true)
-@Composable
-fun PreviewListScreen() {
-    ListScreen()
 }

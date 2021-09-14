@@ -54,6 +54,10 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling:1.0.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
 
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha06")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
+
     // Image Loading
     implementation("com.github.skydoves:landscapist-coil:1.3.4")
 
