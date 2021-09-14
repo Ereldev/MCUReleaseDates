@@ -7,6 +7,7 @@ Get a list of all future Marvel Cinematic Universe (MCU) movies with details &am
 
 - [x] Create factories with sample data for previews
 - [ ] Add Unit Tests
+- [x] Shared date formatter
 
 ## Android
 
@@ -17,7 +18,6 @@ Get a list of all future Marvel Cinematic Universe (MCU) movies with details &am
 - [ ] Add Show detail loading by using placeholders
 - [ ] Fix missing preview for Screens due to view model injection
 - [ ] Main Theme + Dark Theme colors
-- [ ] Clear TODOs
 - [ ] Add Unit Tests
 
 ## iOS

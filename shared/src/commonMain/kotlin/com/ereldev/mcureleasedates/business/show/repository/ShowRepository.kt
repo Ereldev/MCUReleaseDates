@@ -12,13 +12,13 @@ class ShowRepository(
 ) {
 
     suspend fun getMovies(): List<Show> =
-        api.getMovies().results.map {
-            movieMapper.from(it)
-        }
+        api.getMovies().results
+            .sortedBy { it.releaseDate }
+            .map { movieMapper.from(it) }
 
     suspend fun getTVShows() =
-        api.getTVShows().results.map {
-            tvShowMapper.from(it)
-        }
+        api.getTVShows().results
+            .sortedBy { it.firstAirDate }
+            .map { tvShowMapper.from(it) }
 
 }
