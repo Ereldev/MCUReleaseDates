@@ -9,11 +9,11 @@ object ShowFactory {
 
     fun fixedShows() = Shows(
         listOf(
-            Show("Spiderman 3", "overview", "2021-11-24"),
-            Show("Venom 2", "overview", "2021-11-24")
+            Show(1, "Spiderman 3", "overview", "2021-11-24"),
+            Show(2, "Venom 2", "overview", "2021-11-24")
         ),
         listOf(
-            Show("What If?", "overview", "2021-11-24")
+            Show(3, "What If?", "overview", "2021-11-24")
         )
     )
 

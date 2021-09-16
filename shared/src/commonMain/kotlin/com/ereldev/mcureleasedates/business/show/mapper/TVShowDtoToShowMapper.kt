@@ -9,6 +9,7 @@ import com.ereldev.mcureleasedates.business.show.model.TVShowDto
 class TVShowDtoToShowMapper: Mapper<TVShowDto, Show>() {
 
     override fun from(from: TVShowDto) = Show(
+        from.id,
         from.name ?: "",
         from.overview ?: "",
         from.firstAirDate?.let { DateUtils.formatDate(it) } ?: "",

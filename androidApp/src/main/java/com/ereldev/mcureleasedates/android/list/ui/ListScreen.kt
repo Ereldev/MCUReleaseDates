@@ -1,5 +1,6 @@
 package com.ereldev.mcureleasedates.android.list.ui
 
+import android.os.Bundle
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -11,6 +12,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.ereldev.mcureleasedates.android.detail.ui.DETAIL_SCREEN_ARG_SHOW
 import com.ereldev.mcureleasedates.android.detail.ui.DETAIL_SCREEN_NAME
 import com.ereldev.mcureleasedates.android.list.ListViewModel
 import com.ereldev.mcureleasedates.business.show.model.Show
@@ -53,6 +55,9 @@ fun ListScreen(
 }
 
 private fun onShowClick(navController: NavController, show: Show) {
+    navController.currentBackStackEntry?.arguments = Bundle().apply {
+        putParcelable(DETAIL_SCREEN_ARG_SHOW, show)
+    }
     navController.navigate(DETAIL_SCREEN_NAME)
 }
 

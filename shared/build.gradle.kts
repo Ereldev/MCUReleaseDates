@@ -7,6 +7,7 @@ plugins {
     kotlin("plugin.serialization") version "1.5.20"
     id("com.codingfeline.buildkonfig")
     id("com.android.library")
+    id("kotlin-parcelize")
 }
 
 kotlin {
