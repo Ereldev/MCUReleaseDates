@@ -20,7 +20,7 @@ fun Title1(text: String, modifier: Modifier = Modifier) {
         style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
         modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(12.dp)
     )
 }
 
@@ -37,7 +37,7 @@ fun Title2(text: String, modifier: Modifier = Modifier) {
         style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold),
         modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(16.dp)
     )
 }
 

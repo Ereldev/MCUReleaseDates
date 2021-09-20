@@ -6,10 +6,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ereldev.mcureleasedates.android.MainActivity
+import com.ereldev.mcureleasedates.android.R
 import com.ereldev.mcureleasedates.android.common.ui.PosterImage
 import com.ereldev.mcureleasedates.android.common.ui.ShowImage
 import com.ereldev.mcureleasedates.android.common.ui.Title1
@@ -51,11 +53,24 @@ fun DetailScreen(
                 )
             }
         }
+
         Title1(text = show.title)
-        Text(text = "Release date: TODO")
+
+        Text(
+            text = stringResource(R.string.release_date, show.date),
+            modifier = Modifier.padding(8.dp)
+        )
+
         Spacer(modifier = Modifier.height(8.dp))
-        Title2(text = "Synopsis")
-        Text(text = show.overview)
+
+        Title2(text = stringResource(R.string.synopsis))
+        Text(text = show.overview, modifier = Modifier.padding(8.dp))
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Title2(text = stringResource(R.string.cast))
+
+
     }
 }
 

@@ -8,4 +8,8 @@
 
     <string name="nothing_to_see_for_now">Nothing to see for now …</string>
 
+    <string name="release_date">Release date: %s</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="cast">Cast</string>
+
 </resources>
