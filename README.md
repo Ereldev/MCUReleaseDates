@@ -14,8 +14,9 @@ Get a list of all future Marvel Cinematic Universe (MCU) movies with details &am
 - [x] Better loading state
 - [x] Handle empty lists
 - [ ] Handle errors with retry
-- [ ] Add Show detail screen
-- [ ] Add Show detail loading by using placeholders
+- [x] Add Show detail screen
+- [ ] Add Cast in Show detail screen
+- [ ] Add Show detail cast loading by using placeholders
 - [ ] Fix missing preview for Screens due to view model injection
 - [ ] Main Theme + Dark Theme colors
 - [ ] Save selected tab when user click on show detail
@@ -24,3 +25,7 @@ Get a list of all future Marvel Cinematic Universe (MCU) movies with details &am
 ## iOS
 
 - [ ] Android like implementation 
+
+# Improvements / Future ideas
+
+- New show notification (backend needed)

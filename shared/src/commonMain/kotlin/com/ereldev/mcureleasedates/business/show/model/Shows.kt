@@ -8,6 +8,7 @@ data class Shows(
 )
 
 data class Show(
+    val type: ShowType,
     val id: Int,
     val title: String,
     val overview: String,
@@ -15,3 +16,7 @@ data class Show(
     val image: String? = null,
     val background: String? = null
 ): Parcelize()
+
+enum class ShowType {
+    MOVIE, TV
+}
