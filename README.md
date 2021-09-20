@@ -18,6 +18,7 @@ Get a list of all future Marvel Cinematic Universe (MCU) movies with details &am
 - [ ] Add Show detail loading by using placeholders
 - [ ] Fix missing preview for Screens due to view model injection
 - [ ] Main Theme + Dark Theme colors
+- [ ] Save selected tab when user click on show detail
 - [ ] Add Unit Tests
 
 ## iOS

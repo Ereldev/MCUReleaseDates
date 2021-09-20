@@ -12,5 +12,6 @@ data class Show(
     val title: String,
     val overview: String,
     val date: String,
-    val image: String? = null
+    val image: String? = null,
+    val background: String? = null
 ): Parcelize()

@@ -13,7 +13,8 @@ class MovieDtoToShowMapper: Mapper<MovieDto, Show>() {
         from.title ?: "",
         from.overview ?: "",
         from.releaseDate?.let { DateUtils.formatDate(it) } ?: "",
-        from.posterPath?.let { "${ShowApi.POSTER_URL}$it" }
+        from.posterPath?.let { "${ShowApi.POSTER_URL}$it" },
+        from.backdropPath?.let { "${ShowApi.BACKGROUND_URL}$it" }
     )
 
 }

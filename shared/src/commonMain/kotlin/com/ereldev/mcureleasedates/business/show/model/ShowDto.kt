@@ -9,6 +9,7 @@ data class MovieDto(
     val title: String? = null,
     val overview: String? = null,
     @SerialName("poster_path") val posterPath: String? = null,
+    @SerialName("backdrop_path") val backdropPath: String? = null,
     @SerialName("release_date") val releaseDate: String? = null
 )
 
@@ -18,5 +19,6 @@ data class TVShowDto(
     val name: String? = null,
     val overview: String? = null,
     @SerialName("poster_path") val posterPath: String? = null,
+    @SerialName("backdrop_path") val backdropPath: String? = null,
     @SerialName("first_air_date") val firstAirDate: String? = null
 )
