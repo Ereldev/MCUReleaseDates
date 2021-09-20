@@ -1,5 +1,8 @@
 package com.ereldev.mcureleasedates.android.di
 
+import com.ereldev.mcureleasedates.business.credits.api.CreditsApi
+import com.ereldev.mcureleasedates.business.credits.mapper.CreditsDtoToCreditsMapper
+import com.ereldev.mcureleasedates.business.credits.repository.CreditsRepository
 import com.ereldev.mcureleasedates.business.show.api.ShowApi
 import com.ereldev.mcureleasedates.business.show.mapper.MovieDtoToShowMapper
 import com.ereldev.mcureleasedates.business.show.mapper.TVShowDtoToShowMapper
@@ -36,6 +39,24 @@ object RepositoryModule {
         showApi,
         movieMapper,
         tvShowMapper
+    )
+
+    @Singleton
+    @Provides
+    fun providesCreditsApi() = CreditsApi()
+
+    @Singleton
+    @Provides
+    fun providesCreditsDtoToCreditsMapper() = CreditsDtoToCreditsMapper()
+
+    @Singleton
+    @Provides
+    fun providesCreditsRepository(
+        creditsApi: CreditsApi,
+        creditsMapper: CreditsDtoToCreditsMapper
+    ) = CreditsRepository(
+        creditsApi,
+        creditsMapper
     )
 
 }

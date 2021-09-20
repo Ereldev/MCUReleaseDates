@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.ereldev.mcureleasedates.business.show.GetShowsUseCase
 import com.ereldev.mcureleasedates.business.show.model.Show
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,8 +24,6 @@ class ListViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            delay(2000)
-
             getShowsUseCase.execute().let {
                 movies = it.movies
                 tvShows = it.tvShows

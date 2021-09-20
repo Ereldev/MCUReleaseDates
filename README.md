@@ -1,5 +1,6 @@
 # MCUReleaseDates
-Get a list of all future Marvel Cinematic Universe (MCU) movies with details &amp; release dates
+
+Get a list of all future Marvel Cinematic Universe (MCU) movies / series with details &amp; release dates
 
 # TODO
 
@@ -15,7 +16,7 @@ Get a list of all future Marvel Cinematic Universe (MCU) movies with details &am
 - [x] Handle empty lists
 - [ ] Handle errors with retry
 - [x] Add Show detail screen
-- [ ] Add Cast in Show detail screen
+- [x] Add Cast in Show detail screen
 - [ ] Add Show detail cast loading by using placeholders
 - [ ] Fix missing preview for Screens due to view model injection
 - [ ] Main Theme + Dark Theme colors

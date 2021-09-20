@@ -2,11 +2,15 @@ package com.ereldev.mcureleasedates.android.detail.ui
 
 import android.app.Activity
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -30,6 +34,9 @@ fun DetailScreen(
     show: Show,
     detailViewModel: DetailViewModel
 ) {
+    val cast = remember { detailViewModel.cast }
+    val scrollState = rememberScrollState()
+
     Column(
         modifier = Modifier.fillMaxSize()
     ){
@@ -58,19 +65,27 @@ fun DetailScreen(
 
         Text(
             text = stringResource(R.string.release_date, show.date),
-            modifier = Modifier.padding(8.dp)
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxWidth()
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Column(
+            Modifier
+                .verticalScroll(scrollState)
+        ) {
+            Title2(text = stringResource(R.string.synopsis))
+            Text(text = show.overview, modifier = Modifier.padding(8.dp))
 
-        Title2(text = stringResource(R.string.synopsis))
-        Text(text = show.overview, modifier = Modifier.padding(8.dp))
+            Title2(text = stringResource(R.string.cast))
 
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Title2(text = stringResource(R.string.cast))
-
-
+            CastList(
+                cast = cast,
+                modifier = Modifier
+                    .height(200.dp)
+            )
+        }
     }
 }
 
