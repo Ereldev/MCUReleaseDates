@@ -8,6 +8,7 @@ plugins {
     id("com.codingfeline.buildkonfig")
     id("com.android.library")
     id("kotlin-parcelize")
+    kotlin("kapt")
 }
 
 kotlin {
@@ -41,6 +42,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
+                implementation("io.mockk:mockk-common:1.12.0")
             }
         }
         val androidMain by getting {
@@ -52,6 +54,8 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-junit"))
                 implementation("junit:junit:4.13.2")
+                implementation("io.mockk:mockk:1.12.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
             }
         }
         val iosMain by getting {
@@ -78,5 +82,6 @@ android {
     defaultConfig {
         minSdkVersion(21)
         targetSdkVersion(30)
+        testInstrumentationRunner = "org.junit.runner.Runner"
     }
 }
