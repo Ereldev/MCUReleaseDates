@@ -2,13 +2,14 @@ package com.ereldev.mcureleasedates.business.show.repository
 
 import com.ereldev.mcureleasedates.business.common.ResponseDto
 import com.ereldev.mcureleasedates.business.show.api.ShowApi
+import com.ereldev.mcureleasedates.business.show.factory.ShowFactory
 import com.ereldev.mcureleasedates.business.show.mapper.MovieDtoToShowMapper
 import com.ereldev.mcureleasedates.business.show.mapper.TVShowDtoToShowMapper
-import com.ereldev.mcureleasedates.business.show.model.MovieDto
-import io.mockk.coEvery
-import io.mockk.mockk
+import io.mockk.*
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
+import kotlin.test.assertEquals
 
 class ShowRepositoryTest {
 
@@ -28,20 +29,43 @@ class ShowRepositoryTest {
     }
 
     @Test
-    fun testGetMovies() {
+    fun testGetMovies() = runBlocking {
         // Arrange
+        val moviesDto = ShowFactory.getMoviesDto()
+        val movies = ShowFactory.getMovies()
 
-        coEvery { apiMock.getMovies() } returns ResponseDto(listOf(), 1, 1, 1)
+        coEvery { apiMock.getMovies() } returns ResponseDto(moviesDto, 1, 1, 1)
+        every { movieMapperMock.from(moviesDto[0]) } returns movies[0]
+        every { movieMapperMock.from(moviesDto[1]) } returns movies[1]
 
         // Act
+        val result = repository.getMovies()
 
         // Assert
-
+        assertEquals(result, movies)
+        coVerify { apiMock.getMovies() }
+        verify { movieMapperMock.from(moviesDto[0]) }
+        verify { movieMapperMock.from(moviesDto[1]) }
     }
 
     @Test
-    fun testGetTVShow() {
+    fun testGetTVShow() = runBlocking {
+        // Arrange
+        val tvShowsDto = ShowFactory.getTVShowsDto()
+        val tvShows = ShowFactory.getTVShows()
 
+        coEvery { apiMock.getTVShows() } returns ResponseDto(tvShowsDto, 1, 1, 1)
+        every { tvShowMapperMock.from(tvShowsDto[0]) } returns tvShows[0]
+        every { tvShowMapperMock.from(tvShowsDto[1]) } returns tvShows[1]
+
+        // Act
+        val result = repository.getTVShows()
+
+        // Assert
+        assertEquals(result, tvShows)
+        coVerify { apiMock.getTVShows() }
+        verify { tvShowMapperMock.from(tvShowsDto[0]) }
+        verify { tvShowMapperMock.from(tvShowsDto[1]) }
     }
 
 }

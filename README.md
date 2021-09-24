@@ -4,10 +4,13 @@ Get a list of all future Marvel Cinematic Universe (MCU) movies / series with de
 
 # TODO
 
+- [ ] Project structure diagram
+- [ ] Jacoco reports (merged) screenshot
+
 ## Shared
 
 - [x] Create factories with sample data for previews
-- [ ] Add Unit Tests
+- [x] Add Unit Tests with Jacoco report
 - [x] Shared date formatter
 
 ## Android
