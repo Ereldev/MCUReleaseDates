@@ -34,16 +34,16 @@ class ShowRepositoryTest {
         val moviesDto = ShowFactory.getMoviesDto()
         val movies = ShowFactory.getMovies()
 
-        coEvery { apiMock.getMovies() } returns ResponseDto(moviesDto, 1, 1, 1)
+        coEvery { apiMock.getMovies(ShowApi.KEYWORD_MARVEL_COMICS) } returns ResponseDto(moviesDto, 1, 1, 1)
         every { movieMapperMock.from(moviesDto[0]) } returns movies[0]
         every { movieMapperMock.from(moviesDto[1]) } returns movies[1]
 
         // Act
-        val result = repository.getMovies()
+        val result = repository.getMovies(ShowApi.KEYWORD_MARVEL_COMICS)
 
         // Assert
         assertEquals(result, movies)
-        coVerify { apiMock.getMovies() }
+        coVerify { apiMock.getMovies(ShowApi.KEYWORD_MARVEL_COMICS) }
         verify { movieMapperMock.from(moviesDto[0]) }
         verify { movieMapperMock.from(moviesDto[1]) }
     }
@@ -54,16 +54,16 @@ class ShowRepositoryTest {
         val tvShowsDto = ShowFactory.getTVShowsDto()
         val tvShows = ShowFactory.getTVShows()
 
-        coEvery { apiMock.getTVShows() } returns ResponseDto(tvShowsDto, 1, 1, 1)
+        coEvery { apiMock.getTVShows(ShowApi.KEYWORD_MARVEL_COMICS) } returns ResponseDto(tvShowsDto, 1, 1, 1)
         every { tvShowMapperMock.from(tvShowsDto[0]) } returns tvShows[0]
         every { tvShowMapperMock.from(tvShowsDto[1]) } returns tvShows[1]
 
         // Act
-        val result = repository.getTVShows()
+        val result = repository.getTVShows(ShowApi.KEYWORD_MARVEL_COMICS)
 
         // Assert
         assertEquals(result, tvShows)
-        coVerify { apiMock.getTVShows() }
+        coVerify { apiMock.getTVShows(ShowApi.KEYWORD_MARVEL_COMICS) }
         verify { tvShowMapperMock.from(tvShowsDto[0]) }
         verify { tvShowMapperMock.from(tvShowsDto[1]) }
     }

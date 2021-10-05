@@ -14,6 +14,7 @@ class TVShowDtoToShowMapper: Mapper<TVShowDto, Show>() {
         from.id,
         from.name ?: "",
         from.overview ?: "",
+        from.firstAirDate ?:"",
         from.firstAirDate?.let { DateUtils.formatDate(it) } ?: "",
         from.posterPath?.let { "${ShowApi.POSTER_URL}$it" },
         from.backdropPath?.let { "${ShowApi.BACKGROUND_URL}$it" }

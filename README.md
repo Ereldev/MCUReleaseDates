@@ -12,6 +12,7 @@ Get a list of all future Marvel Cinematic Universe (MCU) movies / series with de
 - [x] Create factories with sample data for previews
 - [x] Add Unit Tests with Jacoco report
 - [x] Shared date formatter
+- [x] Add "marvel comics" shows to lists
 
 ## Android
 

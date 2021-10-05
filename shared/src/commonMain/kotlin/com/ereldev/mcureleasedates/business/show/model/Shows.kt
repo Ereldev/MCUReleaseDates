@@ -12,6 +12,7 @@ data class Show(
     val id: Int,
     val title: String,
     val overview: String,
+    val originalDate: String,
     val date: String,
     val image: String? = null,
     val background: String? = null
