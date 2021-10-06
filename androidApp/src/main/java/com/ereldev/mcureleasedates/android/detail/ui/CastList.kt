@@ -8,14 +8,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ereldev.mcureleasedates.business.credits.factory.CreditsFactory
 import com.ereldev.mcureleasedates.business.credits.model.Actor
+import com.valentinilk.shimmer.ShimmerBounds
+import com.valentinilk.shimmer.rememberShimmer
 
 @Composable
-fun CastList(cast: List<Actor>, modifier: Modifier = Modifier) {
+fun CastList(cast: List<Actor>? = null, modifier: Modifier = Modifier) {
     val listState = rememberLazyListState()
+    val shimmerInstance = rememberShimmer(shimmerBounds = ShimmerBounds.Window)
 
     LazyRow(state = listState, modifier = modifier) {
-        items(cast) { actor ->
-            ActorListItem(actor)
+        if (cast != null) {
+            items(cast) { actor ->
+                ActorListItem(actor)
+            }
+        } else {
+            items(5) {
+                ShimmerActorListItem(shimmerInstance)
+            }
         }
     }
 }

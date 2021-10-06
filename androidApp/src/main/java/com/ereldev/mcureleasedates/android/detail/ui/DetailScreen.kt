@@ -80,7 +80,10 @@ fun DetailScreen(
 
             when(screenState) {
                 ScreenState.LOADING -> {
-                    //TODO show loading skeletons
+                    CastList(
+                        modifier = Modifier
+                            .height(200.dp)
+                    )
                 }
                 ScreenState.ERROR -> {
                     ErrorWithRetry(

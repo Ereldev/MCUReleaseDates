@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.ereldev.mcureleasedates.android"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 30
         versionCode = 1
         versionName = "1.0"
@@ -63,6 +63,9 @@ dependencies {
 
     // Lottie
     implementation("com.airbnb.android:lottie-compose:4.1.0")
+
+    // Shimmer
+    implementation("com.valentinilk.shimmer:compose-shimmer:1.0.0")
 
     // DI
     implementation("com.google.dagger:hilt-android:2.38.1")
