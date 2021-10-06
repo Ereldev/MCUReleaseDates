@@ -5,11 +5,15 @@
 
     <string name="movies">Movies</string>
     <string name="tv_shows">TV Shows</string>
+    <string name="unable_to_get_shows_list">Unable to get shows list</string>
+
+    <string name="retry">retry</string>
 
     <string name="nothing_to_see_for_now">Nothing to see for now …</string>
 
     <string name="release_date">Release date: %s</string>
     <string name="synopsis">Synopsis</string>
     <string name="cast">Cast</string>
+    <string name="unable_to_get_cast">Unable to get cast</string>
 
 </resources>

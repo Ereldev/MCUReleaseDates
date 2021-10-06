@@ -6,6 +6,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -16,10 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ereldev.mcureleasedates.android.MainActivity
 import com.ereldev.mcureleasedates.android.R
-import com.ereldev.mcureleasedates.android.common.ui.PosterImage
-import com.ereldev.mcureleasedates.android.common.ui.ShowImage
-import com.ereldev.mcureleasedates.android.common.ui.Title1
-import com.ereldev.mcureleasedates.android.common.ui.Title2
+import com.ereldev.mcureleasedates.android.common.ui.*
 import com.ereldev.mcureleasedates.android.detail.vm.DetailViewModel
 import com.ereldev.mcureleasedates.android.detail.vm.DetailViewModelModule
 import com.ereldev.mcureleasedates.business.show.factory.ShowFactory
@@ -34,7 +32,7 @@ fun DetailScreen(
     show: Show,
     detailViewModel: DetailViewModel
 ) {
-    val cast = remember { detailViewModel.cast }
+    val screenState by remember { detailViewModel.screenState }
     val scrollState = rememberScrollState()
 
     Column(
@@ -80,11 +78,25 @@ fun DetailScreen(
 
             Title2(text = stringResource(R.string.cast))
 
-            CastList(
-                cast = cast,
-                modifier = Modifier
-                    .height(200.dp)
-            )
+            when(screenState) {
+                ScreenState.LOADING -> {
+                    //TODO show loading skeletons
+                }
+                ScreenState.ERROR -> {
+                    ErrorWithRetry(
+                        message = stringResource(id = R.string.unable_to_get_cast),
+                        modifier = Modifier
+                            .fillMaxSize()
+                    ) { detailViewModel.loadCast() }
+                }
+                else -> {
+                    CastList(
+                        cast = detailViewModel.cast,
+                        modifier = Modifier
+                            .height(200.dp)
+                    )
+                }
+            }
         }
     }
 }

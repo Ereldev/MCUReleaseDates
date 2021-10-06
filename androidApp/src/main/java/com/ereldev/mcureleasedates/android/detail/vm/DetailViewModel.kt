@@ -1,8 +1,9 @@
 package com.ereldev.mcureleasedates.android.detail.vm
 
-import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ereldev.mcureleasedates.android.common.ui.ScreenState
 import com.ereldev.mcureleasedates.business.credits.GetCastUseCase
 import com.ereldev.mcureleasedates.business.credits.model.Actor
 import com.ereldev.mcureleasedates.business.show.model.Show
@@ -15,13 +16,28 @@ class DetailViewModel @AssistedInject constructor(
     private val getCastUseCase: GetCastUseCase
 ): ViewModel() {
 
-    var cast = mutableStateListOf<Actor>()
+    var screenState = mutableStateOf(ScreenState.LOADING)
+        private set
+
+    var cast = listOf<Actor>()
         private set
 
     init {
+        loadCast()
+    }
+
+    fun loadCast() {
         viewModelScope.launch {
-            getCastUseCase.execute(show).let {
-                cast.addAll(it)
+            screenState.value = ScreenState.LOADING
+
+            try {
+                getCastUseCase.execute(show).let {
+                    cast = it
+                }
+
+                screenState.value = ScreenState.READY
+            } catch (e: Exception) {
+                screenState.value = ScreenState.ERROR
             }
         }
     }

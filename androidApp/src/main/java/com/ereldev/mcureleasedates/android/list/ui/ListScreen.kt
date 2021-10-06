@@ -12,6 +12,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.ereldev.mcureleasedates.android.R
+import com.ereldev.mcureleasedates.android.common.ui.ErrorWithRetry
+import com.ereldev.mcureleasedates.android.common.ui.ScreenState
 import com.ereldev.mcureleasedates.android.detail.ui.DETAIL_SCREEN_ARG_SHOW
 import com.ereldev.mcureleasedates.android.detail.ui.DETAIL_SCREEN_NAME
 import com.ereldev.mcureleasedates.android.list.ListViewModel
@@ -26,28 +29,36 @@ fun ListScreen(
     navController: NavController
 ) {
     var selectedTabIndex by remember { mutableStateOf(0) }
-    val loading by remember { listViewModel.loading }
+    val screenState by remember { listViewModel.screenState }
 
     Scaffold {
-        if (loading) {
-            ListLoading()
-        } else {
-            Column {
-                when(selectedTabIndex) {
-                    ListTab.Movies.ordinal -> { listViewModel.movies }
-                    ListTab.TVShows.ordinal -> { listViewModel.tvShows }
-                    else -> null
-                }?.let {
-                    ShowsList(
-                        it,
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxSize()
-                    ) { show -> onShowClick(navController, show) }
-                }
+        when(screenState) {
+            ScreenState.LOADING -> ListLoading()
+            ScreenState.ERROR -> {
+                ErrorWithRetry(
+                    message = stringResource(id = R.string.unable_to_get_shows_list),
+                    modifier = Modifier
+                        .fillMaxSize()
+                ) { listViewModel.loadShows() }
+            }
+            else -> {
+                Column {
+                    when(selectedTabIndex) {
+                        ListTab.Movies.ordinal -> { listViewModel.movies }
+                        ListTab.TVShows.ordinal -> { listViewModel.tvShows }
+                        else -> null
+                    }?.let {
+                        ShowsList(
+                            it,
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxSize()
+                        ) { show -> onShowClick(navController, show) }
+                    }
 
-                Tabs(selectedTabIndex) {
-                    selectedTabIndex = it
+                    Tabs(selectedTabIndex) {
+                        selectedTabIndex = it
+                    }
                 }
             }
         }
