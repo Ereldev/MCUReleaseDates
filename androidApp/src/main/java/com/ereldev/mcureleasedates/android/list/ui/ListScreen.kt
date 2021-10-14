@@ -115,6 +115,19 @@ fun ListScreenErrorPreview() {
 @ExperimentalMaterialApi
 @Preview(showSystemUi = true)
 @Composable
+fun ListScreenReadyNoShowPreview() {
+    val screenState = remember { mutableStateOf(ScreenState.READY) }
+    val showsState = remember { mutableStateOf<Shows?>(ShowFactory.emptyShows()) }
+
+    ListScreen(
+        screenState = screenState,
+        showsState = showsState
+    )
+}
+
+@ExperimentalMaterialApi
+@Preview(showSystemUi = true)
+@Composable
 fun ListScreenReadyPreview() {
     val screenState = remember { mutableStateOf(ScreenState.READY) }
     val showsState = remember { mutableStateOf<Shows?>(ShowFactory.fixedShows()) }
