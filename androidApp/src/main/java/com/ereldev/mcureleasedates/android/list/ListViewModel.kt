@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ereldev.mcureleasedates.android.common.ui.ScreenState
 import com.ereldev.mcureleasedates.business.show.GetShowsUseCase
-import com.ereldev.mcureleasedates.business.show.model.Show
+import com.ereldev.mcureleasedates.business.show.model.Shows
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,9 +18,7 @@ class ListViewModel @Inject constructor(
     var screenState = mutableStateOf(ScreenState.LOADING)
         private set
 
-    var movies = listOf<Show>()
-        private set
-    var tvShows = listOf<Show>()
+    var shows = mutableStateOf<Shows?>(null)
         private set
 
     init {
@@ -33,8 +31,7 @@ class ListViewModel @Inject constructor(
 
             try {
                 getShowsUseCase.execute().let {
-                    movies = it.movies
-                    tvShows = it.tvShows
+                    shows.value = it
                 }
 
                 screenState.value = ScreenState.READY

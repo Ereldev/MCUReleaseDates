@@ -1,59 +1,61 @@
 package com.ereldev.mcureleasedates.android.list.ui
 
-import android.os.Bundle
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.ereldev.mcureleasedates.android.R
 import com.ereldev.mcureleasedates.android.common.ui.ErrorWithRetry
 import com.ereldev.mcureleasedates.android.common.ui.ScreenState
-import com.ereldev.mcureleasedates.android.detail.ui.DETAIL_SCREEN_ARG_SHOW
-import com.ereldev.mcureleasedates.android.detail.ui.DETAIL_SCREEN_NAME
-import com.ereldev.mcureleasedates.android.list.ListViewModel
+import com.ereldev.mcureleasedates.business.show.factory.ShowFactory
 import com.ereldev.mcureleasedates.business.show.model.Show
+import com.ereldev.mcureleasedates.business.show.model.Shows
 
 const val LIST_SCREEN_NAME = "list"
 
 @ExperimentalMaterialApi
 @Composable
 fun ListScreen(
-    listViewModel: ListViewModel = viewModel(),
-    navController: NavController
+    screenState: MutableState<ScreenState>,
+    showsState: MutableState<Shows?>,
+    onLoadShowRetry: (() -> Unit)? = null,
+    onShowClick: ((show: Show) -> Unit)? = null
 ) {
     var selectedTabIndex by remember { mutableStateOf(0) }
-    val screenState by remember { listViewModel.screenState }
+    val screenStatus by remember { screenState }
+    val shows by remember { showsState }
 
     Scaffold {
-        when(screenState) {
+        when(screenStatus) {
             ScreenState.LOADING -> ListLoading()
             ScreenState.ERROR -> {
                 ErrorWithRetry(
                     message = stringResource(id = R.string.unable_to_get_shows_list),
                     modifier = Modifier
                         .fillMaxSize()
-                ) { listViewModel.loadShows() }
+                ) { onLoadShowRetry?.let { it() } }
             }
             else -> {
                 Column {
-                    when(selectedTabIndex) {
-                        ListTab.Movies.ordinal -> { listViewModel.movies }
-                        ListTab.TVShows.ordinal -> { listViewModel.tvShows }
-                        else -> null
-                    }?.let {
-                        ShowsList(
-                            it,
-                            modifier = Modifier
-                                .weight(1f)
-                                .fillMaxSize()
-                        ) { show -> onShowClick(navController, show) }
+                    shows?.let { shows ->
+                        when(selectedTabIndex) {
+                            ListTab.Movies.ordinal -> { shows.movies }
+                            ListTab.TVShows.ordinal -> { shows.tvShows }
+                            else -> null
+                        }?.let {
+                            ShowsList(
+                                it,
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .fillMaxSize()
+                            ) { show -> onShowClick?.let { it(show) } }
+                        }
                     }
 
                     Tabs(selectedTabIndex) {
@@ -63,13 +65,6 @@ fun ListScreen(
             }
         }
     }
-}
-
-private fun onShowClick(navController: NavController, show: Show) {
-    navController.currentBackStackEntry?.arguments = Bundle().apply {
-        putParcelable(DETAIL_SCREEN_ARG_SHOW, show)
-    }
-    navController.navigate(DETAIL_SCREEN_NAME)
 }
 
 @Composable
@@ -89,4 +84,43 @@ fun Tabs(selectedTabIndex: Int, onTabChange: (Int) -> Unit) {
             }
         }
     }
+}
+
+@ExperimentalMaterialApi
+@Preview(showSystemUi = true)
+@Composable
+fun ListScreenLoadingPreview() {
+    val screenState = remember { mutableStateOf(ScreenState.LOADING) }
+    val showsState = remember { mutableStateOf<Shows?>(null) }
+
+    ListScreen(
+        screenState = screenState,
+        showsState = showsState
+    )
+}
+
+@ExperimentalMaterialApi
+@Preview(showSystemUi = true)
+@Composable
+fun ListScreenErrorPreview() {
+    val screenState = remember { mutableStateOf(ScreenState.ERROR) }
+    val showsState = remember { mutableStateOf<Shows?>(null) }
+
+    ListScreen(
+        screenState = screenState,
+        showsState = showsState
+    )
+}
+
+@ExperimentalMaterialApi
+@Preview(showSystemUi = true)
+@Composable
+fun ListScreenReadyPreview() {
+    val screenState = remember { mutableStateOf(ScreenState.READY) }
+    val showsState = remember { mutableStateOf<Shows?>(ShowFactory.fixedShows()) }
+
+    ListScreen(
+        screenState = screenState,
+        showsState = showsState
+    )
 }

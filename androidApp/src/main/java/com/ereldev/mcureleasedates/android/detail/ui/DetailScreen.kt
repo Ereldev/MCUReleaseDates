@@ -5,9 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -20,6 +18,8 @@ import com.ereldev.mcureleasedates.android.R
 import com.ereldev.mcureleasedates.android.common.ui.*
 import com.ereldev.mcureleasedates.android.detail.vm.DetailViewModel
 import com.ereldev.mcureleasedates.android.detail.vm.DetailViewModelModule
+import com.ereldev.mcureleasedates.business.credits.factory.CreditsFactory
+import com.ereldev.mcureleasedates.business.credits.model.Actor
 import com.ereldev.mcureleasedates.business.show.factory.ShowFactory
 import com.ereldev.mcureleasedates.business.show.model.Show
 import dagger.hilt.android.EntryPointAccessors
@@ -30,9 +30,12 @@ const val DETAIL_SCREEN_NAME = "detail/{$DETAIL_SCREEN_ARG_SHOW}"
 @Composable
 fun DetailScreen(
     show: Show,
-    detailViewModel: DetailViewModel
+    screenState: MutableState<ScreenState>,
+    castState: MutableState<List<Actor>?>,
+    onLoadCastRetry: (() -> Unit)? = null,
 ) {
-    val screenState by remember { detailViewModel.screenState }
+    val screenStatus by remember { screenState }
+    val cast by remember { castState }
     val scrollState = rememberScrollState()
 
     Column(
@@ -78,7 +81,7 @@ fun DetailScreen(
 
             Title2(text = stringResource(R.string.cast))
 
-            when(screenState) {
+            when(screenStatus) {
                 ScreenState.LOADING -> {
                     CastList(
                         modifier = Modifier
@@ -90,11 +93,11 @@ fun DetailScreen(
                         message = stringResource(id = R.string.unable_to_get_cast),
                         modifier = Modifier
                             .fillMaxSize()
-                    ) { detailViewModel.loadCast() }
+                    ) { onLoadCastRetry?.let { it() } }
                 }
                 else -> {
                     CastList(
-                        cast = detailViewModel.cast,
+                        cast = cast,
                         modifier = Modifier
                             .height(200.dp)
                     )
@@ -104,13 +107,47 @@ fun DetailScreen(
     }
 }
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
-fun DetailScreenPreview() {
+fun DetailScreenLoadingPreview() {
     ShowFactory.fixedShows().movies.first().let {
+        val screenState = remember { mutableStateOf(ScreenState.LOADING) }
+        val castState = remember { mutableStateOf<List<Actor>?>(null) }
+
         DetailScreen(
-            it,
-            detailViewModelProvider(it)
+            show = it,
+            screenState = screenState,
+            castState = castState
+        )
+    }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun DetailScreenErrorPreview() {
+    ShowFactory.fixedShows().movies.first().let {
+        val screenState = remember { mutableStateOf(ScreenState.ERROR) }
+        val castState = remember { mutableStateOf<List<Actor>?>(null) }
+
+        DetailScreen(
+            show = it,
+            screenState = screenState,
+            castState = castState
+        )
+    }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun DetailScreenReadyPreview() {
+    ShowFactory.fixedShows().movies.first().let {
+        val screenState = remember { mutableStateOf(ScreenState.READY) }
+        val castState = remember { mutableStateOf<List<Actor>?>(CreditsFactory.fixedCredits().cast) }
+
+        DetailScreen(
+            show = it,
+            screenState = screenState,
+            castState = castState
         )
     }
 }

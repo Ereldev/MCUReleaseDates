@@ -19,7 +19,7 @@ class DetailViewModel @AssistedInject constructor(
     var screenState = mutableStateOf(ScreenState.LOADING)
         private set
 
-    var cast = listOf<Actor>()
+    var cast = mutableStateOf<List<Actor>?>(null)
         private set
 
     init {
@@ -32,7 +32,7 @@ class DetailViewModel @AssistedInject constructor(
 
             try {
                 getCastUseCase.execute(show).let {
-                    cast = it
+                    cast.value = it
                 }
 
                 screenState.value = ScreenState.READY

@@ -22,10 +22,10 @@ Get a list of all future Marvel Cinematic Universe (MCU) movies / series with de
 - [x] Add Show detail screen
 - [x] Add Cast in Show detail screen
 - [x] Add Show detail cast loading by using shimmer
-- [ ] Fix missing preview for Screens due to view model injection
+- [x] Fix missing preview for Screens due to view model injection
 - [ ] Main Theme + Dark Theme colors
 - [ ] Save selected tab when user click on show detail
-- [ ] Add Unit Tests
+- [ ] Add Unit UI Tests
 
 ## iOS
 
