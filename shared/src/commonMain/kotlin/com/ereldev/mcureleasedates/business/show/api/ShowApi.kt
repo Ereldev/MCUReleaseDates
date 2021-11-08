@@ -29,6 +29,7 @@ class ShowApi: TheMovieDBApi() {
 
         const val KEYWORD_MCU = "180547"
         const val KEYWORD_MARVEL_COMICS = "265894"
+        const val KEYWORD_SPIDERVERSE = "256086"
 
         private const val DISCOVER_MOVIE_PATH = "/discover/movie"
         private const val DISCOVER_TV_PATH = "/discover/tv"
