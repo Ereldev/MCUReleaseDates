@@ -71,7 +71,11 @@ fun ListScreen(
 fun Tabs(selectedTabIndex: Int, onTabChange: (Int) -> Unit) {
     val tabTitles = ListTab.values().map { stringResource(it.titleId) }
 
-    TabRow(selectedTabIndex = selectedTabIndex) {
+    TabRow(
+        selectedTabIndex = selectedTabIndex,
+        backgroundColor = MaterialTheme.colors.primary,
+        contentColor = MaterialTheme.colors.onBackground
+    ) {
         tabTitles.forEachIndexed { index, title ->
             Tab(
                 selected = (selectedTabIndex == index),

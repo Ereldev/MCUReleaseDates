@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -38,69 +39,71 @@ fun DetailScreen(
     val cast by remember { castState }
     val scrollState = rememberScrollState()
 
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ){
-        Box(
-            modifier = Modifier.fillMaxWidth()
+    Scaffold {
+        Column(
+            modifier = Modifier.fillMaxSize()
         ) {
-            ShowImage(
-                url = show.background,
-                description = show.title,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-            )
-            Box(modifier = Modifier.padding(start = 10.dp, top = 10.dp)) {
-                PosterImage(
-                    url = show.image,
+            Box(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                ShowImage(
+                    url = show.background,
                     description = show.title,
                     modifier = Modifier
-                        .width(87.dp)
-                        .height(125.dp)
+                        .fillMaxWidth()
+                        .height(200.dp)
                 )
+                Box(modifier = Modifier.padding(start = 10.dp, top = 10.dp)) {
+                    PosterImage(
+                        url = show.image,
+                        description = show.title,
+                        modifier = Modifier
+                            .width(87.dp)
+                            .height(125.dp)
+                    )
+                }
             }
-        }
 
-        Title1(text = show.title)
+            Title1(text = show.title)
 
-        Text(
-            text = stringResource(R.string.release_date, show.date),
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .padding(8.dp)
-                .fillMaxWidth()
-        )
+            Text(
+                text = stringResource(R.string.release_date, show.date),
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .fillMaxWidth()
+            )
 
-        Column(
-            Modifier
-                .verticalScroll(scrollState)
-        ) {
-            Title2(text = stringResource(R.string.synopsis))
-            Text(text = show.overview, modifier = Modifier.padding(8.dp))
+            Column(
+                Modifier
+                    .verticalScroll(scrollState)
+            ) {
+                Title2(text = stringResource(R.string.synopsis))
+                Text(text = show.overview, modifier = Modifier.padding(8.dp))
 
-            Title2(text = stringResource(R.string.cast))
+                Title2(text = stringResource(R.string.cast))
 
-            when(screenStatus) {
-                ScreenState.LOADING -> {
-                    CastList(
-                        modifier = Modifier
-                            .height(200.dp)
-                    )
-                }
-                ScreenState.ERROR -> {
-                    ErrorWithRetry(
-                        message = stringResource(id = R.string.unable_to_get_cast),
-                        modifier = Modifier
-                            .fillMaxSize()
-                    ) { onLoadCastRetry?.let { it() } }
-                }
-                else -> {
-                    CastList(
-                        cast = cast,
-                        modifier = Modifier
-                            .height(200.dp)
-                    )
+                when (screenStatus) {
+                    ScreenState.LOADING -> {
+                        CastList(
+                            modifier = Modifier
+                                .height(200.dp)
+                        )
+                    }
+                    ScreenState.ERROR -> {
+                        ErrorWithRetry(
+                            message = stringResource(id = R.string.unable_to_get_cast),
+                            modifier = Modifier
+                                .fillMaxSize()
+                        ) { onLoadCastRetry?.let { it() } }
+                    }
+                    else -> {
+                        CastList(
+                            cast = cast,
+                            modifier = Modifier
+                                .height(200.dp)
+                        )
+                    }
                 }
             }
         }

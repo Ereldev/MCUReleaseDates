@@ -53,6 +53,7 @@ dependencies {
     implementation("androidx.compose.material:material:1.0.1")
     implementation("androidx.compose.ui:ui-tooling:1.0.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.17.0")
 
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.4.0-alpha06")

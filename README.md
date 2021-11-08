@@ -23,7 +23,7 @@ Get a list of all future Marvel Cinematic Universe (MCU) movies / series with de
 - [x] Add Cast in Show detail screen
 - [x] Add Show detail cast loading by using shimmer
 - [x] Fix missing preview for Screens due to view model injection
-- [ ] Main Theme + Dark Theme colors
+- [x] Main Theme + Dark Theme colors
 - [ ] Save selected tab when user click on show detail
 - [ ] Add Unit UI Tests
 
